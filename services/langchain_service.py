@@ -1,7 +1,7 @@
 import json
 
 from langchain.chains.llm import LLMChain
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.prompts import PromptTemplate
 import re

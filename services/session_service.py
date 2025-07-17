@@ -1,15 +1,15 @@
 import json
-from idlelib.run import LOCALHOST
+
 
 from redis import Redis
 
-from settings import REDIS_PORT
+from settings import REDIS_CLIENT_URL, REDIS_PORT
 from typed_dicts.Question import SessionData
 
 
 class SessionService:
     def __init__(self):
-        self.redis_client = Redis(host=LOCALHOST, port=REDIS_PORT, decode_responses=True)
+        self.redis_client = Redis(host=REDIS_CLIENT_URL, port=REDIS_PORT, decode_responses=True)
 
     def create_session(self, session_id: str, data: dict) -> None:
         self.redis_client.set(session_id, json.dumps(data))
