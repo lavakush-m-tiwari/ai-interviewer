@@ -27,6 +27,7 @@ async def upload_resume(
     """
     content = await file.read()
     return await interview_service.create_session_from_resume(file_bytes=content)
+    # return ResumeUploadResponse(session_id='5', resume_summary='summary')  # Mock response for testing purposes
 
 
 @router.post("/start-interview")
@@ -39,8 +40,12 @@ async def start_interview(
     :param interview_service: The interview service instance.
     :return: The first question to ask.
     """
-    print("session id", session_id)
     return await interview_service.start_interview(session_id=session_id)
+    # return ConversationResponse(
+    #     session_id=session_id,
+    #     next_question="What is your experience with Python?",
+    # )
+
 
 
 @router.post("/answer-question")
@@ -58,6 +63,11 @@ async def answer_question(
         session_id=request.session_id, answer=request.answer
     )
 
+    # return ConversationResponse(
+    #     session_id='5',
+    #     next_question="What is your experience with Python?",
+    # )
+
 
 @router.get("/end-interview")
 async def end_interview(
@@ -69,4 +79,11 @@ async def end_interview(
     :param interview_service: The interview service instance.
     :return: A response indicating the interview has ended.
     """
+    # return InterviewResultResponse(
+    #     session_id=session_id,
+    #     score=85,
+    #     weaknesses=["Time management", "Communication skills"],
+    #     strengths=["Problem-solving", "Technical knowledge"],
+    #     feedback="Overall good performance, but needs improvement in time management.",
+    # )
     return await interview_service.end_interview(session_id=session_id)

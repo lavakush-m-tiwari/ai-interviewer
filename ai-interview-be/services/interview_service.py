@@ -54,7 +54,7 @@ class InterviewService:
             )
 
         q = self.langchain_service.generate_question(session_data["resume_summary"])
-        session_data.questions.append(Question(q=q, a=None, feedback=None))
+        session_data["questions"].append(Question(q=q, a=None, feedback=None))
         session_data["current_question_index"] = 1
         session_service.update_session(session_id, session_data)
         return ConversationResponse(session_id=session_id, next_question=q)

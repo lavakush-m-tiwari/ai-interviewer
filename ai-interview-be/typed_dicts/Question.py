@@ -16,5 +16,5 @@ class SessionData(TypedDict):
     """
 
     resume_summary: str  # Summary of the resume
-    questions: list[Question]  # List of questions asked during the interview
+    questions: list[Question] = []  # List of questions asked during the interview
     current_question_index: int  # Index of the current question being asked
